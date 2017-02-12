@@ -1,6 +1,8 @@
+#installer numpy et nltk en mode admin
+import nltk
 
 def corpus (lien):
-    import nltk
+
     from nltk.corpus import PlaintextCorpusReader
     tokenizer = nltk.data.load('tokenizers/punkt/french.pickle')
     from nltk.corpus import PlaintextCorpusReader
@@ -11,15 +13,20 @@ def corpus (lien):
     print(ptb.words('discours.txt'))
     
     
-def tokenisation (lien):
-    import nltk, re, pprint
+def tokenisation_mots (lien):#transforme en liste de mots le texte
+    import re, pprint
     from nltk import word_tokenize
     f = open(lien) #ouverture texte
-    raw = f.read()#lecteure texte
-    liste=word_tokenize(raw) #transforme en liste de mots le texte
-    print(type(liste))
-    #print(liste)
-    return liste
+    texte = f.read()#lecture texte
+    liste_mots=word_tokenize(texte) 
+    return liste_mots
+    
+def tokenisation_phrases(lien):#transforme en liste de phrases le texte
+    from nltk.tokenize import sent_tokenize
+    f = open(lien) #ouverture texte
+    texte = f.read()#lecture texte
+    liste_phrases = sent_tokenize(texte)
+    return liste_phrases
 
 liste_ponctuations=[',','?','!',';',':','.']
 def stop_words(liste_mots):
@@ -34,9 +41,15 @@ def stop_words(liste_mots):
 def structure(liste):
     from nltk import tag
     structurePhrase = tag.pos_tag(liste)
+   # for x in structurePhrase: 
+    #    if x[1] == 'NN' or x[1]=='NNP' or x[1]=='NNS' or x[1]== 
+    #       liste_propre.append(mot)
+   # return liste_propre
     return structurePhrase
 
 
 
-liste=tokenisation("C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\essai\\discours.txt")
-a=(structure(liste))
+#liste=tokenisation_mots("C:\\Users\\Paul\\Documents\\Ecole\\2A\\info\\projet\\projetS2\\code\\essai\\discours.txt")
+phrases=tokenisation_phrases("C:\\Users\\Paul\\Documents\\Ecole\\2A\\info\\projet\\projetS2\\code\\essai\\discours.txt")
+stop=stop_words(liste)
+a=(structure(stop))
