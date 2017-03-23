@@ -47,6 +47,11 @@ def structure(liste):
    # return liste_propre
     return structurePhrase
 
+def lireXML(xml):
+    from lxml import etree
+    tree = etree.parse(xml)
+    for user in tree.xpath("/users/user/nom"):
+    print(user.text)
 
 
 #liste=tokenisation_mots("C:\\Users\\Paul\\Documents\\Ecole\\2A\\info\\projet\\projetS2\\code\\essai\\discours.txt")

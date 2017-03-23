@@ -1,4 +1,6 @@
+#'C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv'
 import csv
+import pandas
 def lecture_csv(lien):
     tableau=[]
     reader=csv.reader(open(lien))
@@ -28,4 +30,13 @@ def liste_questions (tableau):
             phrase_precedente=phrase
     return questions
             
+def telecharger_csv(lien):
+    donnees = pandas.read_csv(lien, sep=',')
+    donnees=donnees.as_matrix()
+    return donnees
         
+def nettoyer_csv(matrice):
+    for x in matrice:
+        if (x=='nan'):
+            delete(matrice,x)
+    return matrice
