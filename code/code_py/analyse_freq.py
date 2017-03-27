@@ -15,27 +15,27 @@ def lecture_csv(lien):
         tableau.append(colonne)
     return tableau
     
-def ligne_questions (tableau): #recherche des questions. On peut se permettre une complexité en n^4 puisque la recherche se termine vite
-    for colonne in tableau:
-        for phrase in colonne:
-            for caractere in phrase:
-                if caractere=="?":
-                    return colonne
+#def ligne_questions (tableau): #recherche des questions. On peut se permettre une complexité en n^4 puisque la recherche se termine vite
+ #   for colonne in tableau:
+  #      for phrase in colonne:
+   #         for caractere in phrase:
+    #            if caractere=="?":
+     #               return colonne
                     
                     
-def liste_questions (tableau):
-    questions=[]
-    phrase_precedente="?"
-    for phrase in tableau:
-        if not not phrase:
-            if phrase[len(phrase)-1]=="?" and phrase_precedente[len(phrase_precedente)-1]=="?":
-                questions.append(phrase)
-            elif phrase[len(phrase)-1]=="?" and phrase_precedente[len(phrase_precedente)-1]!="?":
-                x=phrase[0].lower()
-                phrase[0]=x
-                questions.append(phrase_precedente+' ,'+phrase)
-            phrase_precedente=phrase
-    return questions
+#def liste_questions (tableau):
+ #   questions=[]
+  #  phrase_precedente="?"
+   # for phrase in tableau:
+    #    if not not phrase:
+     #       if phrase[len(phrase)-1]=="?" and phrase_precedente[len(phrase_precedente)-1]=="?":
+      #          questions.append(phrase)
+       #     elif phrase[len(phrase)-1]=="?" and phrase_precedente[len(phrase_precedente)-1]!="?":
+        #        x=phrase[0].lower()
+         #       phrase[0]=x
+          #      questions.append(phrase_precedente+' ,'+phrase)
+           # phrase_precedente=phrase
+    #return questions
             
 def telecharger_csv(lien):
     donnees = pandas.read_csv(lien, sep=',')
@@ -66,8 +66,23 @@ def analyser_reponse (numero_question,matrice):
                    
     return liste_cle
     
+def mots_recurrents (reponses):
+    liste_termes=[reponses[0]]
+    liste_recurrences=[1]
+    for i in range (1,len(reponses)):
+        if reponses[i] not in liste_termes :
+                liste_termes.append(reponses[i])
+                liste_recurrences.append(1)
+        else:
+            for j in range (0,len(liste_termes)):
+                if reponses[i]==liste_termes[j]:
+                    liste_recurrences[j]=liste_recurrences[j]+1 
+    return liste_termes, liste_recurrences
+    
+
+    
 def programme ():
-    donnees=telecharger_csv('C:\\Users\\Paul\\Documents\\Ecole\\2A\\info\\projet\\projetS2\\code\\code_py\\csv2.csv')
+    donnees=telecharger_csv('C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv')
     donnees=nettoyer_csv(donnees)
     reponses=analyser_reponse(0,donnees)
     return reponses
