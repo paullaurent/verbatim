@@ -49,8 +49,8 @@ def nettoyer_csv(matrice): #supprime les éléments vides des réponses
     return matrice
     
 def tokenisation_mots (chaine_caractere):#transforme en liste de mots la réponse
-    liste_mots=word_tokenize(chaine_caractere) 
-    return liste_mots
+    return word_tokenize(chaine_caractere) 
+    
     
 def analyser_reponse (numero_question,matrice):
     liste_cle=[]
@@ -81,8 +81,22 @@ def mots_recurrents (reponses):
     
 
     
-def programme ():
+def programme_freq ():
     donnees=telecharger_csv('C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv')
     donnees=nettoyer_csv(donnees)
     reponses=analyser_reponse(0,donnees)
     return reponses
+    
+def programme_lda ():
+    donnees=telecharger_csv('C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv')
+    for i in donnees :
+        for j in i:
+            print (j)
+            raw = j.lower()
+            tokens = tokenisation_mots(raw)
+            stopped_tokens = [i for i in tokens if not i in stopwords('fr')]
+            stemmed_tokens = [PorterStemmer().stem(i) for i in stopped_tokens]
+            dictionary = corpora.Dictionary(texts)
+            corpus = [dictionary.doc2bow(text) for text in texts]
+            ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word = dictionary, passes=20)
+    return ldamodel
