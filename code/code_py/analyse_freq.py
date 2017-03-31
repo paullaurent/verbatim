@@ -82,7 +82,8 @@ def mots_recurrents (reponses):
 
     
 def programme ():
-    donnees=telecharger_csv('C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv')
+    donnees=telecharger_csv('C:\\Users\\Paul\\Documents\\Ecole\\2A\\info\\projet\\projetS2\\code\\code_py\\csv2.csv')
     donnees=nettoyer_csv(donnees)
     reponses=analyser_reponse(0,donnees)
-    return reponses
+    mots=mots_recurrents(reponses)
+    return mots
