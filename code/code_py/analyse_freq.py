@@ -3,7 +3,6 @@
 #'C:\\Users\\Paul\\Documents\\Ecole\\2A\\info\\projet\\projetS2\\code\\code_py\\csv2.csv' pour fixe
 #conda install -c anaconda gensim=1.0.1
 #pip install owlready
-pip install owlready
 from owlready import *
 import nltk
 from nltk.tokenize import RegexpTokenizer
@@ -86,7 +85,7 @@ def programme_lda (numero_question):
             raw = i.lower()
         except:
             print("entier détécté")
-        tokens = tokenisation_mots(raw)
+        tokens = word_tokenize(raw)
         stopped_tokens = [i for i in tokens if not i in stopwords.words('french') and i not in liste_ponctuations and i !='nan'] 
         stemmed_tokens = [PorterStemmer().stem(i) for i in stopped_tokens]
         texts.append(stemmed_tokens)
@@ -100,7 +99,3 @@ def telecharger_onto():
     onto_path.append("C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\")
     onto.load()
     return onto
-    
-def programme():
-    print("hello world")
-
