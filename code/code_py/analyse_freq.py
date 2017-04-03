@@ -28,12 +28,33 @@ def telecharger_csv(lien):
     donnees = pandas.read_csv(lien, sep=',')
     donnees=donnees.as_matrix()
     return donnees
-        
-def nettoyer_csv(matrice): 
-    for x in matrice :
-        if str(x)=='nan':
-            numpy.delete(x)
-    return matrice
+
+#def ligne_questions (tableau): #recherche des questions. On peut se permettre une complexité en n^4 puisque la recherche se termine vite
+ #   for colonne in tableau:
+  #      for phrase in colonne:
+   #         for caractere in phrase:
+    #            if caractere=="?":
+     #               return colonne
+                    
+                    
+#def liste_questions (tableau):
+ #   questions=[]
+  #  phrase_precedente="?"
+   # for phrase in tableau:
+    #    if not not phrase:
+     #       if phrase[len(phrase)-1]=="?" and phrase_precedente[len(phrase_precedente)-1]=="?":
+      #          questions.append(phrase)
+       #     elif phrase[len(phrase)-1]=="?" and phrase_precedente[len(phrase_precedente)-1]!="?":
+        #        x=phrase[0].lower()
+         #       phrase[0]=x
+          #      questions.append(phrase_precedente+' ,'+phrase)
+           # phrase_precedente=phrase
+    #return questions
+#def nettoyer_csv(matrice): 
+   # for x in matrice :
+      #  if str(x)=='nan':
+     #       numpy.delete(x)
+   # return matrice
     
 
     
@@ -65,7 +86,6 @@ def mots_recurrents (reponses):
     return liste_termes, liste_recurrences
     
 
-    
 def programme_freq (numero_question):
     donnees=telecharger_csv('C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv')
     try:
@@ -73,7 +93,7 @@ def programme_freq (numero_question):
         reponses=mots_recurrents(reponses)
         return reponses 
     except  :
-        print ("Le numÃ©ro question est incorrect")
+        print ("Le numéro question est incorrect")
     
     
 def programme_lda (numero_question):
@@ -84,7 +104,7 @@ def programme_lda (numero_question):
         try:
             raw = i.lower()
         except:
-            print("entier dÃ©tÃ©ctÃ©")
+            print("entier détécté")
         tokens = word_tokenize(raw)
         stopped_tokens = [i for i in tokens if not i in stopwords.words('french') and i not in liste_ponctuations and i !='nan'] 
         stemmed_tokens = [PorterStemmer().stem(i) for i in stopped_tokens]
@@ -95,6 +115,7 @@ def programme_lda (numero_question):
     print(ldamodel.print_topics(num_topics=3, num_words=3))
     
     
+<<<<<<< HEAD
 #def telecharger_onto(lien):
  #   onto_path.append("C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\")
   #  onto.load()
@@ -259,3 +280,9 @@ def enumerate_wolf_synonyms(filename,mot, fLOG=noLOG, encoding="utf-8"):
 
 
 
+=======
+def telecharger_onto():
+    onto_path.append("C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\")
+    onto.load()
+    return onto
+>>>>>>> 94a3d616f8a4b28a4ee1f94661f261dd50c9d46f
