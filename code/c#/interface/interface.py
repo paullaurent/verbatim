@@ -1,3 +1,105 @@
+ # -*-coding:Latin-1 -* 
+#'C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv' pour pc portable
+#'C:\\Users\\Paul\\Documents\\Ecole\\2A\\info\\projet\\projetS2\\code\\code_py\\csv2.csv' pour fixe
+#conda install -c anaconda gensim=1.0.1
+#pip install owlready
+from owlready import *
+import nltk
+from nltk.tokenize import RegexpTokenizer
+from nltk.stem.porter import PorterStemmer
+import gensim
+from gensim import corpora, models
+import csv
+import pandas
+import re, pprint
+import numpy
+from nltk import word_tokenize
+liste_ponctuations=[',','?','!',';',':','.']
+from nltk.corpus import stopwords
+def lecture_csv(lien):
+    tableau=[]
+    reader=csv.reader(open(lien))
+    for colonne in reader:
+        tableau.append(colonne)
+    return tableau
+
+            
+def telecharger_csv(lien):
+    donnees = pandas.read_csv(lien, sep=',')
+    donnees=donnees.as_matrix()
+    return donnees
+        
+def nettoyer_csv(matrice): 
+    for x in matrice :
+        if str(x)=='nan':
+            numpy.delete(x)
+    return matrice
+    
+
+    
+    
+def analyser_reponse (numero_question,matrice):
+    liste_cle=[] 
+    matrice=matrice[:,numero_question]
+    nb_reponses=matrice.shape[0]-1
+    for i in range (1,nb_reponses): 
+        phrase=str(matrice[i])
+        liste_mots= word_tokenize(phrase)  
+        for mot in liste_mots: 
+            if mot.lower() not in stopwords.words('french') and mot not in liste_ponctuations and mot!='nan': 
+                liste_cle.append(mot)
+                   
+    return liste_cle
+    
+def mots_recurrents (reponses):
+    liste_termes=[reponses[0]]
+    liste_recurrences=[1]
+    for i in range (1,len(reponses)):
+        if reponses[i] not in liste_termes : 
+                liste_termes.append(reponses[i])
+                liste_recurrences.append(1)
+        else:
+            for j in range (0,len(liste_termes)):
+                if reponses[i]==liste_termes[j]:
+                    liste_recurrences[j]=liste_recurrences[j]+1 
+    return liste_termes, liste_recurrences
+    
+
+    
+def programme_freq (numero_question):
+    donnees=telecharger_csv('C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv')
+    try:
+        reponses=analyser_reponse(numero_question,donnees)
+        reponses=mots_recurrents(reponses)
+        return reponses 
+    except  :
+        print ("Le numéro question est incorrect")
+    
+    
+def programme_lda (numero_question):
+    donnees=telecharger_csv('C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv')
+    texts=[]
+    donnees=donnees[:,numero_question]
+    for i in donnees :
+        try:
+            raw = i.lower()
+        except:
+            print("entier détécté")
+        tokens = word_tokenize(raw)
+        stopped_tokens = [i for i in tokens if not i in stopwords.words('french') and i not in liste_ponctuations and i !='nan'] 
+        stemmed_tokens = [PorterStemmer().stem(i) for i in stopped_tokens]
+        texts.append(stemmed_tokens)
+    dictionary = corpora.Dictionary(texts)
+    corpus = [dictionary.doc2bow(text) for text in texts]
+    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=3, id2word = dictionary, passes=20)
+    print(ldamodel.print_topics(num_topics=3, num_words=3))
+    
+    
+def telecharger_onto():
+    onto_path.append("C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\")
+    onto.load()
+    return onto
+
 import clr
 clr.AddReference('System.Drawing')
 clr.AddReference('System.Windows.Forms')
@@ -5,14 +107,29 @@ clr.AddReference('System.Windows.Forms')
 from System.Drawing import *
 from System.Windows.Forms import *
 
-class MyForm(Form):
-    def __init__(self):
-        # Create child controls and initialize form
-        pass
 
+class HelloWorldForm(Form):
+    def __init__(self):
+        self.Text = 'Traitement verbatim'
+        url = TextBox()
+        url.Text = "Entrez le lien local de vos verbatim au format csv"
+        url.Location = Point(50, 50)
+        url.Height = 30
+        url.Width = 500
+        self.count = 0
+        button = Button()
+        button.Text = "Click Me"
+        button.Location = Point(550, 50)
+        button.Click += self.buttonPressed
+        self.Controls.Add(url)
+        self.Controls.Add(button)
+        pass
+    def buttonPressed (self,sender,args):
+        motsclefs = Label()
+        self.Text="hello world"
 
 Application.EnableVisualStyles()
 Application.SetCompatibleTextRenderingDefault(False)
 
-form = MyForm()
+form = HelloWorldForm()
 Application.Run(form)
