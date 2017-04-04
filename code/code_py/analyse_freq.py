@@ -7,11 +7,11 @@
 import nltk
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem.porter import PorterStemmer
-import gensim
-from gensim import corpora, models
+#import gensim
+#from gensim import corpora, models
 import csv
 import pandas
-import re, pprint
+#import re, pprint
 import numpy
 from nltk import word_tokenize
 liste_ponctuations=[',','?','!',';',':','.']
@@ -115,7 +115,6 @@ def programme_lda (numero_question):
     print(ldamodel.print_topics(num_topics=3, num_words=3))
     
     
-<<<<<<< HEAD
 #def telecharger_onto(lien):
  #   onto_path.append("C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\")
   #  onto.load()
@@ -251,7 +250,7 @@ def enumerate_wolf_xml_row(filename, fLOG=noLOG, xmlformat=False, encoding="utf-
 
 
 
-
+filename='C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\wolf-1.0b4.xml'
 def enumerate_wolf_synonyms(filename,mot, fLOG=noLOG, encoding="utf-8"):
 
     """
@@ -279,10 +278,3 @@ def enumerate_wolf_synonyms(filename,mot, fLOG=noLOG, encoding="utf-8"):
             print(syn)
 
 
-
-=======
-def telecharger_onto():
-    onto_path.append("C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\")
-    onto.load()
-    return onto
->>>>>>> 94a3d616f8a4b28a4ee1f94661f261dd50c9d46f
