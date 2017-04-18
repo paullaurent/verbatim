@@ -1,10 +1,9 @@
-# -*-coding:Latin-1 -* 
+ # -*-coding:Latin-1 -* 
 #'C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv' pour pc portable
 #'C:\\Users\\Paul\\Documents\\Ecole\\2A\\info\\projet\\projetS2\\code\\code_py\\csv2.csv' pour fixe
 #conda install -c anaconda gensim=1.0.1
 #pip install owlready
 #from owlready import *
-from flask import Flask
 import nltk
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem.porter import PorterStemmer
@@ -15,16 +14,8 @@ import pandas
 import re, pprint
 import numpy
 from nltk import word_tokenize
-from nltk.corpus import stopwords
-app = Flask(__name__)
-
-@app.route=("/")
-
-
-
-
 liste_ponctuations=[',','?','!',';',':','.','(',')','"','[',']']
-
+from nltk.corpus import stopwords
 def lecture_csv(lien):
     tableau=[]
     reader=csv.reader(open(lien))
@@ -309,7 +300,3 @@ def analyse_sujet(question):
             if (count==longueur):
                 mot_cle.append(i)
     return mot_cle
-    
-    
-if __name__ == '__main__':
-    app.run(debug=True)

@@ -6,10 +6,10 @@
     <ProjectGuid>7a29c27d-86b9-4487-9b04-09952530a927</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>interface.py</StartupFile>
-    <SearchPath>..\..\code_py\;..\..\code_py</SearchPath>
+    <SearchPath>..\..\code_py\</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <IsWindowsApplication>True</IsWindowsApplication>
-    <InterpreterId>IronPython|2.7-32</InterpreterId>
+    <InterpreterId>IronPython|2.7-64</InterpreterId>
     <LaunchProvider>IronPython (.NET) launcher</LaunchProvider>
     <OutputPath>.</OutputPath>
     <Name>interface</Name>
@@ -27,7 +27,7 @@
     <None Include="interface.py" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="IronPython|2.7-32" />
+    <InterpreterReference Include="IronPython|2.7-64" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\codePy.pyproj">
