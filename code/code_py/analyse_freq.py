@@ -1,10 +1,14 @@
-# -*-coding:Latin-1 -* 
+# -*-coding:Latin-1 -*
+#!C:\Users\Paul\Anaconda3\python.exe
 #'C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv' pour pc portable
 #'C:\\Users\\Paul\\Documents\\Ecole\\2A\\info\\projet\\projetS2\\code\\code_py\\csv2.csv' pour fixe
 #conda install -c anaconda gensim=1.0.1
 #pip install owlready
 #from owlready import *
 from flask import Flask
+app = Flask(__name__)
+
+@app.route=("/")
 import nltk
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem.porter import PorterStemmer
@@ -16,9 +20,7 @@ import re, pprint
 import numpy
 from nltk import word_tokenize
 from nltk.corpus import stopwords
-app = Flask(__name__)
 
-@app.route=("/")
 
 
 
