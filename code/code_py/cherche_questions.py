@@ -9,20 +9,18 @@ def telecharger_csv(lien):
     return donnees
     
 def questions(donnees,seuil):
-    [n,m]=donnees.shape
+    [n,m]=donnees.shape#n nombre de reponses,mnombre de questions
     liste_question=[]
     for i in range (0,m):
         liste_reponses=[donnees[i,1]]#on initialise avec la première réponse
         for j in range (2,n):
             if donnees[j,i] not in liste_reponses:#on regarde si la réponse a déjà été donnée
                 liste_reponses.append(donnees[j,i])
-        #print(n)
-        #print(len(liste_reponses))
-        if not (len(liste_reponses)<):
+        if (len(liste_reponses)>seuil*n):
             liste_question.append(i)
     return liste_question
             
     
 def cherche_questions(lien,seuil):
     donnees=telecharger_csv(lien)
-    return(questions(donnees))
+    return(questions(donnees,seuil))
