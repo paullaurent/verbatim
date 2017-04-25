@@ -10,6 +10,7 @@ import re, pprint
 import numpy
 from nltk import word_tokenize
 from nltk.corpus import stopwords
+import freq
 
 """
 
@@ -166,17 +167,19 @@ def enumerate_wolf_synonyms(filename,mot, fLOG=noLOG, encoding="utf-8"):
             yield(syn)
 
 
-def onto(question):
+def onto(question,nb_termes):
     mot_cle=[]
-    for i in programme_freq(question)[0]:
+    mots=freq.freq(question,nb_termes)
+    for i in range (0,len(mots)):
+        terme=mots[i][0][0]
         count=0
         longueur=0
-        if i not in mot_cle:
-            for synset in enumerate_wolf_synonyms('C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\wolf-1.0b4.xml',i):
+        if terme not in mot_cle:
+            for synset in enumerate_wolf_synonyms('C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\wolf-1.0b4.xml',terme):
                 longueur=longueur+len(synset)
                 for mot in synset:
                     if mot not in mot_cle:
                         count=count+1
             if (count==longueur):
-                mot_cle.append(i)
+                mot_cle.append(terme)
     return mot_cle
