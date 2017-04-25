@@ -11,6 +11,7 @@ import numpy
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 import freq
+import time
 
 """
 
@@ -20,7 +21,6 @@ import freq
 
 """
 
-import re
 
 from pyquickhelper.loghelper import noLOG
 
@@ -164,10 +164,11 @@ def enumerate_wolf_synonyms(filename,mot, fLOG=noLOG, encoding="utf-8"):
         syn = [v for k, v in row.iterfields() if k == "SYNSET/SYNONYM/LITERAL/_"]
         if (mot in syn and len(syn)>1):
 
-            yield(syn)
+            print(syn)
 
 
 def onto(question,nb_termes):
+    time1=time.clock()
     mot_cle=[]
     mots=freq.freq(question,nb_termes)
     for i in range (0,len(mots)):
@@ -182,4 +183,7 @@ def onto(question,nb_termes):
                         count=count+1
             if (count==longueur):
                 mot_cle.append(terme)
+    time2=time.clock()
+    print(time2-time1)
     return mot_cle
+    
