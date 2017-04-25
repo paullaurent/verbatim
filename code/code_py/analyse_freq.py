@@ -29,7 +29,7 @@ def telecharger_csv(lien):
     donnees=donnees.as_matrix()
     return donnees
 
-#def ligne_questions (tableau): #recherche des questions. On peut se permettre une complexité en n^4 puisque la recherche se termine vite
+#def ligne_questions (tableau): #recherche des questions. On peut se permettre une complexitï¿½ en n^4 puisque la recherche se termine vite
  #   for colonne in tableau:
   #      for phrase in colonne:
    #         for caractere in phrase:
@@ -93,7 +93,7 @@ def programme_freq (numero_question):
         reponses=mots_recurrents(reponses)
         return reponses 
     except  :
-        print ("Le numéro question est incorrect")
+        print ("Le numï¿½ro question est incorrect")
     
     
 def programme_lda (numero_question):
@@ -104,7 +104,7 @@ def programme_lda (numero_question):
         try:
             raw = i.lower()
         except:
-            print("entier détécté")
+            print("entier dï¿½tï¿½ctï¿½")
         tokens = word_tokenize(raw)
         stopped_tokens = [i for i in tokens if not i in stopwords.words('french') and i not in liste_ponctuations and i !='nan'] 
         stemmed_tokens = [PorterStemmer().stem(i) for i in stopped_tokens]

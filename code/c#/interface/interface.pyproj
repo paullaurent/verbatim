@@ -10,9 +10,9 @@
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <IsWindowsApplication>True</IsWindowsApplication>
-    <InterpreterId>{80659ab7-4d53-4e0c-8588-a766116cbd46}</InterpreterId>
+    <InterpreterId>{655bd80b-bd84-4b6b-ac54-a1731dff3573}</InterpreterId>
     <LaunchProvider>IronPython (.NET) launcher</LaunchProvider>
-    <InterpreterVersion>2.7</InterpreterVersion>
+    <InterpreterVersion>3.5</InterpreterVersion>
     <OutputPath>.</OutputPath>
     <Name>interface</Name>
     <RootNamespace>interface</RootNamespace>
@@ -29,7 +29,7 @@
     <None Include="interface.py" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="{80659ab7-4d53-4e0c-8588-a766116cbd46}\2.7" />
+    <InterpreterReference Include="{655bd80b-bd84-4b6b-ac54-a1731dff3573}\3.5" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\codePy.pyproj">
