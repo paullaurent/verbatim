@@ -6,13 +6,17 @@
     <ProjectGuid>7a29c27d-86b9-4487-9b04-09952530a927</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>interface.py</StartupFile>
-    <SearchPath>
-    </SearchPath>
+    <SearchPath>..\..\code_py\</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <IsWindowsApplication>True</IsWindowsApplication>
+<<<<<<< HEAD
     <InterpreterId>{655bd80b-bd84-4b6b-ac54-a1731dff3573}</InterpreterId>
     <LaunchProvider>IronPython (.NET) launcher</LaunchProvider>
     <InterpreterVersion>3.5</InterpreterVersion>
+=======
+    <InterpreterId>IronPython|2.7-64</InterpreterId>
+    <LaunchProvider>IronPython (.NET) launcher</LaunchProvider>
+>>>>>>> 6e06c96aa874c8e1b4a15535f899fac0334da456
     <OutputPath>.</OutputPath>
     <Name>interface</Name>
     <RootNamespace>interface</RootNamespace>
@@ -29,7 +33,11 @@
     <None Include="interface.py" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <InterpreterReference Include="{655bd80b-bd84-4b6b-ac54-a1731dff3573}\3.5" />
+=======
+    <InterpreterReference Include="IronPython|2.7-64" />
+>>>>>>> 6e06c96aa874c8e1b4a15535f899fac0334da456
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\codePy.pyproj">
@@ -40,10 +48,7 @@
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
-  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
-  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in
        the BeforeBuild and AfterBuild targets below. -->
@@ -52,4 +57,5 @@
   </Target>
   <Target Name="AfterBuild">
   </Target>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
 </Project>
