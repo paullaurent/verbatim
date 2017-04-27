@@ -1,6 +1,6 @@
 #'C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv'
+import json
 from flask import Flask
-from flask import jsonify
 from nltk.probability import FreqDist
 import nltk
 from nltk.tokenize import RegexpTokenizer

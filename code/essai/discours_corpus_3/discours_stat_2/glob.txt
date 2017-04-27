@@ -1,6 +1,0 @@
-Résumé
-Nombre de textes : 1
-Nombre d'occurrences : 530
-Nombre de formes : 275
-Nombre d'hapax : 199 (37.55%des occurrences - 72.36% des formes)
-Moyenne d'occurrences par texte : 530.00
