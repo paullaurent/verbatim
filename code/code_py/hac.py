@@ -1,10 +1,6 @@
 #'C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv'
-from nltk.probability import FreqDist
 import nltk
-from nltk.tokenize import RegexpTokenizer
-from nltk.stem.porter import PorterStemmer
 import pandas
-import re, pprint
 import numpy
 from nltk import word_tokenize
 from nltk.corpus import stopwords
@@ -17,31 +13,25 @@ liste_declinaisons=['a','à', 'absolument', 'actuellement', 'ainsi', 'alors', 'a
 
 def hac(numero_question):
     donnees=telecharger_csv('C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv')
-    reponses=convertion_tableau(numero_question,donnees)
+    reponses=conversion_tableau(numero_question,donnees)
     reponses=linkage(reponses,'ward')
     reponses2=clust.fcluster(reponses, 5.6, criterion='distance')
-    pyplot.title('Hierarchical Clustering Dendrogram (truncated)')
-    pyplot.xlabel('sample index')
-    pyplot.ylabel('distance')
-    dendrogram(
-    reponses,
-    truncate_mode='lastp',  # show only the last p merged clusters
-    p=5,  # show only the last p merged clusters
-    show_leaf_counts=False,  # otherwise numbers in brackets are counts
-    leaf_rotation=90.,
-    leaf_font_size=12.,
-    show_contracted=True,  # to get a distribution impression in truncated branches
-)
-    pyplot.show()
-    
-    return reponses2
+    liste_reponses=[]
+    y=1
+    while (y!=6):
+        x=1
+        while (reponses2[x]!=y):
+            x=x+1
+        liste_reponses.append(donnees[x,numero_question])
+        y=y+1
+    return liste_reponses
         
 def telecharger_csv(lien):
     donnees = pandas.read_csv(lien, sep=',')
     donnees=donnees.as_matrix()
     return donnees
     
-def convertion_tableau (numero_question,matrice):
+def conversion_tableau (numero_question,matrice):
     liste_cle=[] 
     matrice=matrice[:,numero_question]
     nb_reponses=matrice.shape[0]-1
@@ -54,7 +44,6 @@ def convertion_tableau (numero_question,matrice):
     
 
     nb_mots=len(liste_cle)
-    print(nb_reponses)
     tableau=numpy.zeros((nb_reponses,nb_mots))          
     for i in range (1,nb_reponses):
         phrase=str(matrice[i])

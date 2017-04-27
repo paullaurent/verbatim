@@ -8,7 +8,7 @@
 from flask import Flask
 app = Flask(__name__)
 
-@app.route=("/")
+
 import nltk
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem.porter import PorterStemmer
@@ -26,7 +26,7 @@ from nltk.corpus import stopwords
 
 
 liste_ponctuations=[',','?','!',';',':','.','(',')','"','[',']']
-
+@app.route=("/")
 def lecture_csv(lien):
     tableau=[]
     reader=csv.reader(open(lien))
