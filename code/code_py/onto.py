@@ -1,8 +1,5 @@
 #-*- coding: utf-8 -*-
 import nltk
-from nltk.tokenize import RegexpTokenizer
-from nltk.stem.porter import PorterStemmer
-import gensim
 from gensim import corpora, models
 import csv
 import pandas
@@ -164,7 +161,7 @@ def enumerate_wolf_synonyms(filename,mot, fLOG=noLOG, encoding="utf-8"):
         syn = [v for k, v in row.iterfields() if k == "SYNSET/SYNONYM/LITERAL/_"]
         if (mot in syn and len(syn)>1):
 
-            print(syn)
+            yield(syn)
 
 
 def onto(question,nb_termes):
@@ -173,6 +170,7 @@ def onto(question,nb_termes):
     mots=freq.freq(question,nb_termes)
     for i in range (0,len(mots)):
         terme=mots[i][0][0]
+        print(terme)
         count=0
         longueur=0
         if terme not in mot_cle:

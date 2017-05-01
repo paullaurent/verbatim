@@ -1,6 +1,6 @@
 import nltk
 from nltk.tokenize import RegexpTokenizer
-from nltk.stem.porter import PorterStemmer
+from nltk.stem.snowball import FrenchStemmer
 import gensim
 from gensim import corpora, models
 import csv
@@ -18,7 +18,7 @@ def telecharger_csv(lien):
     donnees=donnees.as_matrix()
     return donnees
 
-def programme_lda (numero_question,nb_sujets):
+def lda (numero_question,nb_sujets):
     donnees=telecharger_csv('C:\\Users\\Paul\\Documents\\ecole\\info\\projetS2\\verbatim\\code\\code_py\\csv2.csv')
     texts=[]
     donnees=donnees[:,numero_question]
@@ -26,12 +26,12 @@ def programme_lda (numero_question,nb_sujets):
         try:
             raw = i.lower()
         except:
-            print("entier dï¿½tï¿½ctï¿½")
+            print("entier détécté")
         tokens = word_tokenize(raw)
         stopped_tokens = [i for i in tokens if not i in stopwords.words('french') and i not in liste_ponctuations and i !='nan' and i not in liste_declinaisons] 
-        stemmed_tokens = [PorterStemmer().stem(i) for i in stopped_tokens]
+        stemmed_tokens = [FrenchStemmer().stem(i) for i in stopped_tokens]
         texts.append(stemmed_tokens)
     dictionary = corpora.Dictionary(texts)
     corpus = [dictionary.doc2bow(text) for text in texts]
-    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=nb_sujets, id2word = dictionary, passes=20)
+    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=nb_sujets, id2word = dictionary, passes=100)
     return(ldamodel.print_topics(num_topics=3, num_words=3))
